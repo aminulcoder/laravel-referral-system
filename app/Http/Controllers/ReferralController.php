@@ -72,7 +72,7 @@ class ReferralController extends Controller
         }
 
         $url  = Url::to('/referral-register?ref=' . $referralCode);
-        return    $url ;
+        // return    $url ;
         $data = [
             'url'                => $url,
             'fname'              => $request->fname,
