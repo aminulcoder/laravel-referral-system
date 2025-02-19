@@ -1,102 +1,130 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\FormSubmission;
 use App\Models\Network;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
-Use Mail;
 class ReferralController extends Controller
 {
     public function referral()
     {
-
         return view('referral.referal');
-
     }
 
     public function referralstore(Request $request)
     {
-
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'password' => ['required', 'confirmed', 'min:4'],
-        // ]);
+        $request->validate([
+            'fname'    => 'required',
+            'lname'    => 'required',
+            // 'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:4',
+        ]);
 
         $referralCode = Str::random(10);
+        $userData     = null;
 
-        if (isset($request->refrral_code)) {
-
-            $userData = User::where('refrral_code', $request->refrral_code)->get();
-            if (count($userData) > 0) {
-
-                $user_id = User::insertGetId([
-                    'fname'        => $request->fname,
-                    'lname'        => $request->lname,
-                    'email'        => $request->email,
-                    'country'      => $request->country,
-                    'address'      => $request->address,
-                    'address2'     => $request->address2,
-                    'city'         => $request->city,
-                    'religon'      => $request->religon,
-                    'zip_code'     => $request->zip_code,
-                    'telephone'    => $request->telephone,
-                    'refrral_code' => $referralCode,
-                    'password'     => Hash::make($request->password),
-                ]);
-
-                Network::insert([
-                    'refrral_code'   => $request->refrral_code,
-                    'user_id'        => $user_id,
-                    'parent_user_id' => $userData[0]['id'],
-
-                ]);
-            } else {
-                return back()->with('error', 'Please enter Valid Referral Code');
-            }
-        } else {
-
-            User::insert([
-
-                'fname'        => $request->fname,
-                'lname'        => $request->lname,
-                'email'        => $request->email,
-                'country'      => $request->country,
-                'address'      => $request->address,
-                'address2'     => $request->address2,
-                'city'         => $request->city,
-                'religon'      => $request->religon,
-                'zip_code'     => $request->zip_code,
-                'telephone'    => $request->telephone,
-                'refrral_code' => $referralCode,
-                'password'     => Hash::make($request->password),
-
-            ]);
-
+        if ($request->filled('referral_code')) {
+            $userData = User::where('referral_code', $request->referral_code)->first();
         }
 
-        $domain = Url::to('/referral-register?ref='.$referralCode);
-        $url = $domain.''.$referralCode;
-        $data['url'] = $url;
-        $data['fname'] = $request->fname;
-        $data['email'] = $request->email;
-        $data['password'] = $request->password;
-        $data['title'] = 'Registered';
+        if ($userData) {
+            $user = User::create([
+                'fname'         => $request->fname,
+                'lname'         => $request->lname,
+                'email'         => $request->email,
+                'country'       => $request->country,
+                'address'       => $request->address,
+                'address2'      => $request->address2,
+                'city'          => $request->city,
+                'religion'      => $request->religion,
+                'zip_code'      => $request->zip_code,
+                'telephone'     => $request->telephone,
+                'referral_code' => $referralCode,
+                'password'      => Hash::make($request->password),
+            ]);
 
-        Mail::send('emails.registerMail',['data'=> $data] ,function($message) use($data){
+            Network::create([
+                'referral_code'  => $request->referral_code,
+                'user_id'        => $user->id,
+                'parent_user_id' => $userData->id,
+            ]);
+        } else {
+            $user = User::create([
+                'fname'         => $request->fname,
+                'lname'         => $request->lname,
+                'email'         => $request->email,
+                'country'       => $request->country,
+                'address'       => $request->address,
+                'address2'      => $request->address2,
+                'city'          => $request->city,
+                'religion'      => $request->religion,
+                'zip_code'      => $request->zip_code,
+                'telephone'     => $request->telephone,
+                'referral_code' => $referralCode,
+                'password'      => Hash::make($request->password),
+            ]);
+        }
+
+        $url  = Url::to('/referral-register?ref=' . $referralCode);
+        return    $url ;
+        $data = [
+            'url'                => $url,
+            'fname'              => $request->fname,
+            'email'              => $request->email,
+            'password_reset_url' => Url::to('/password/reset'),
+            'title'              => 'Registered',
+        ];
+
+        Mail::send('emails.registerMail', ['data' => $data], function ($message) use ($data) {
             $message->to($data['email'])->subject($data['title']);
         });
-        return redirect()->route('admin.index')->with('create', ' Admin Successfully Created');
+
+        return redirect()->route('dashboard')->with('success', 'User successfully registered!');
     }
 
-    public function stureferral()
+    public function LoadReferralRegister()
     {
 
+        // if(isset($request->ref)){
+
+        //     $referral = $request->ref;
+        //     $userData = User::where('referral_code',$referral)->get();
+        //     if(count($userData)> 0){
+
+        //         return view('referral.stureferral',compact('referral'));
+        //     }else{
+        //         return view('404');
+        //     }
+        // }else{
+        //     return redirect('/');
+        // }
         return view('referral.stureferral');
+    }
+
+    public function referstduntstore(Request $request)
+    {
+
+        $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'email' => 'required|email|unique:form_submissions,email',
+        ]);
+
+        $user = FormSubmission::create([
+            'user_id' => $request->user_id,
+            'fname'   => $request->fname,
+            'lname'   => $request->lname,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
+            'address' => $request->address,
+            'course'  => $request->course,
+        ]);
+        return redirect()->back();
     }
 }

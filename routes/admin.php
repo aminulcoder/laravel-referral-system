@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Setting\SiteSettingController;
 use App\Http\Controllers\Admin\Setting\SocialmediaSettingController;
 use App\Http\Controllers\Admin\Setting\WebsiteSettingController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\UserController;
 
 
@@ -27,6 +28,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('role', RoleController::class);
     Route::resource('category',   CategoryController::class);
     Route::resource('user',       UserController::class);
+
+    Route::get('student/', [StudentController::class, 'studentlist'])->name('student.list');
+    Route::get('student/{id}', [StudentController::class, 'show'])->name('student.show');
+    Route::delete('student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 
     Route::get('profile/', [AdminProfileController::class, 'adminProfile'])->name('admin.profile');
     Route::put('profile/update/{id}', [AdminProfileController::class, 'UpdateAdminProfile'])->name('admin.profile.update');

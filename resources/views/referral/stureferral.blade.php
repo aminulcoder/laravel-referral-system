@@ -913,21 +913,19 @@
         <h1 class="text-center text-xl font-bold pb-6">Refer Form</h1>
 
 
-        <form action="" method="post">
-            <div class="grid grid-cols-12 px-32 gap-6">
-                <div class="col-span-6">
+
+        <form action="{{ route('referral.student.store') }}" method="post">
+            @csrf
+            <div class="container mx-auto px-8 md:px-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <x-form.input label="First Name" name="fname" />
-                </div>
-                <div class="col-span-6">
                     <x-form.input label="Last Name" name="lname" />
                 </div>
-            </div>
 
-
-            <div class="px-32">
-                <x-form.input label="Email" type="email" name="email" />
-                <x-form.input label="Phone " name="phone" />
-                <x-form.input label="Password" name="password" />
+                <x-form.input label="Email" name="email" />
+                <x-form.input label="Phone" name="phone" />
+                <x-form.input label="Address" name="address" />
+                <x-form.input label="Course" name="course" />
                 <x-form.submit-button />
             </div>
         </form>

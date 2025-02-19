@@ -909,15 +909,19 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="">
 
-        <h1 class="text-center text-xl font-bold pb-6">Affiliate Referral</h1>
-        <p class="px-32 ">Are you looking for a way to make some extra cash? And I don’t mean just a few £ss here and
+        <h1 class="text-center text-3xl font-bold py-6">Affiliate Referral</h1>
+        <p class="px-32 text-[#000] font-lite ">Are you looking for a way to make some extra cash? And I don’t mean just a few £ss here and
             there, I’m talking about £500! That’s right, by becoming an affiliate for Hitec Education, you can earn a
             cool £500 for every student you refer who enrolls in one of their University courses.</p>
         <div class="py-6 px-32">
             <h6 class="font-bold">What is Hitec Education?</h6>
+            <p>Hiteck Education is a leading provider of University courses that cover a wide range of in-demandskills</p>
+           <div class="py-6">
+            <strong>Why Become an Affiliate?</strong>
             <p>There are a few reasons why you should become an affiliate for Hiteck Education. First, it’ s a great way
                 to earn some extra income. With a £500 commission per referral, you can easily make a significant amount
                 of money by simply promoting Hiteck Education’s courses to your friends,family, and followers.</p>
+           </div>
         </div>
         <p class="px-32">Second, it’s a flexible way to make money. You can promote Hitec Education courses on yourown
             time and on
@@ -934,52 +938,52 @@
             <h6 class="font-bold">Start Earning Today!</h6>
             <p>So what are you waiting for? Sign up to become a Hitec Education affiliate today and start
                 earning £500 for every student you refer! and there are no limits</p>
+                <form action="{{ route('referralstore') }}" method="post">
+                    @csrf
+                    <div class="mx-auto ">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <x-form.input label="First Name" placeholder="Enter Your first Name" name="fname" />
+                            <x-form.input label="Last Enter " placeholder="Enter Your last Name" name="lname" />
+                        </div>
+
+                        <x-form.input label="Company Name"  placeholder="If a Company , enter the name" name="company_name" />
+                        <x-form.input label="Address" placeholder="Enter Your Address" name="address" />
+                        <x-form.input label="Address Line 2" placeholder="Enter Your Address" name="address2" />
+                        {{-- <form.input label="City/Town" name="city" /> --}}
+                        <form.input label="Region / County / Province" name="religon" /> <!-- Fixed typo -->
+                        <x-form.input label="Refrral Code" name="refrral_code" /> <!-- Fixed typo -->
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <x-form.input label="Postcode / Zip Code" name="zip_code" />
+                            <x-form.input label="Country" name="country" /> <!-- Fixed issue -->
+                        </div>
+
+                        <x-form.input label="Telephone" name="telephone" />
+                        <x-form.input label="Email" type="email" name="email" />
+
+                        <div class="mt-4">
+                            <x-input-label for="password" :value="__('Password')" />
+                            <x-text-input id="password" class="block mt-1 w-full"
+                                          type="password"
+                                          name="password"
+                                          required autocomplete="new-password" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                                          type="password"
+                                          name="password_confirmation" required autocomplete="new-password" />
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        </div>
+
+                        <x-form.submit-button />
+                    </div>
+                </form>
         </div>
 
 
-        <form action="{{ route('referralstore') }}" method="post">
-            @csrf
-            <div class="container mx-auto px-8 md:px-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <x-form.input label="First Name" name="fname" />
-                    <x-form.input label="Last Name" name="lname" />
-                </div>
-
-                <x-form.input label="Company Name" name="company_name" />
-                <x-form.input label="Address" name="address" />
-                <x-form.input label="Address Line 2" name="address2" />
-                <x-form.input label="City / Town" name="city" />
-                <x-form.input label="Region / County / Province" name="religon" /> <!-- Fixed typo -->
-                <x-form.input label="Refrral Code" name="refrral_code" /> <!-- Fixed typo -->
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <x-form.input label="Postcode / Zip Code" name="zip_code" />
-                    <x-form.input label="Country" name="country" /> <!-- Fixed issue -->
-                </div>
-
-                <x-form.input label="Telephone" name="telephone" />
-                <x-form.input label="Email" type="email" name="email" />
-
-                <div class="mt-4">
-                    <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" class="block mt-1 w-full"
-                                  type="password"
-                                  name="password"
-                                  required autocomplete="new-password" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                  type="password"
-                                  name="password_confirmation" required autocomplete="new-password" />
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                </div>
-
-                <x-form.submit-button />
-            </div>
-        </form>
 
 
     </div>

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('religon')->nullable(); // Fixed typo
             $table->string('zip_code', 50)->nullable()->index(); // Optimized
             $table->string('telephone', 50)->nullable()->index(); // Optimized
-            $table->string('refrral_code', 50)->nullable()->unique(); // Fixed typo & added unique
+            $table->string('referral_code', 50)->nullable()->unique(); // Fixed typo & added unique
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
