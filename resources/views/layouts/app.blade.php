@@ -47,11 +47,14 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-268HXW509V"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'G-268HXW509V');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-268HXW509V');
     </script>
 
 
@@ -91,6 +94,23 @@
         }
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Success!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            });
+        </script>
+    @endif
+
     @stack('styles')
 </head>
 
@@ -124,9 +144,9 @@
         window.addEventListener('scroll', function() {
             var scrollTOp = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTOp > lastScrollTop) {
-                mymunebar.classList.remove('sticky','top-[90px]','z-50');
+                mymunebar.classList.remove('sticky', 'top-[90px]', 'z-50');
             } else {
-                mymunebar.classList.add('sticky','top-[90px]','z-50');
+                mymunebar.classList.add('sticky', 'top-[90px]', 'z-50');
             }
             lastScrollTop = scrollTOp;
         });

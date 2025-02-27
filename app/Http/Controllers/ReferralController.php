@@ -71,7 +71,7 @@ class ReferralController extends Controller
             ]);
         }
 
-        $url  = Url::to('/referral-register?ref=' . $referralCode);
+        $url = Url::to('/referral-register?ref=' . $referralCode);
         // return    $url ;
         $data = [
             'url'                => $url,
@@ -85,7 +85,7 @@ class ReferralController extends Controller
             $message->to($data['email'])->subject($data['title']);
         });
 
-        return redirect()->route('dashboard')->with('success', 'User successfully registered!');
+        return redirect()->route('referral.page')->with('success', 'User successfully registered!');
     }
 
     public function LoadReferralRegister()
@@ -125,6 +125,6 @@ class ReferralController extends Controller
             'address' => $request->address,
             'course'  => $request->course,
         ]);
-        return redirect()->back();
+        return redirect()->route('referral.student')->with('success', 'User successfully registered!');
     }
 }
