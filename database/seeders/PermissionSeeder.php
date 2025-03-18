@@ -59,6 +59,12 @@ class PermissionSeeder extends Seeder
             ['name' => 'blog update', 'module_name' => 'blog'],
             ['name' => 'blog delete', 'module_name' => 'blog'],
             ['name' => 'blog show',   'module_name' => 'blog'],
+            // student
+            ['name' => 'student list',   'module_name' => 'student'],
+            ['name' => 'student create', 'module_name' => 'student'],
+            ['name' => 'student update', 'module_name' => 'student'],
+            ['name' => 'student delete', 'module_name' => 'student'],
+            ['name' => 'student show',   'module_name' => 'student'],
             // Setting
 
             ['name' => 'websitesetting',       'module_name' => 'setting'],

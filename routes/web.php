@@ -21,10 +21,10 @@ Route::controller(ReferralController::class)->group(function () {
 });
 
 // Email Verification Route
-Route::get('/verify-email/{id}/{hash}', [VerificationController::class, 'verifyEmail']);
+// Route::get('/verify-email/{id}/{hash}', [VerificationController::class, 'verifyEmail']);
 
 // Form Submission Route
-Route::post('/submit-form', [FormController::class, 'store'])->name('submit.form');
+// Route::post('/submit-form', [FormController::class, 'store'])->name('submit.form');
 
 // Dashboard Route with Middleware
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {

@@ -57,11 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::created(function ($user) {
-            $user->notify(new VerifyEmailNotification());
-        });
-    }
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::created(function ($user) {
+    //         $user->notify(new VerifyEmailNotification());
+    //     });
+    // }
 }
