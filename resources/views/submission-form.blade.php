@@ -15,6 +15,9 @@
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="text" name="phone" placeholder="Phone Number" required>
         <button type="submit">Submit</button>
+        {{-- <button type="submit">Submit</button>
+        <button type="submit">Submit</button>
+        <button type="submit">Submit</button> --}}
     </form>
 
 
