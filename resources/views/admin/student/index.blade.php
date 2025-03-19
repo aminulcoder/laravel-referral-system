@@ -62,7 +62,8 @@
                                             {{ $student->course }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                            {{ $student->course }}
+                                            {{-- {{ $student->course }} --}}
+                                            {{ $student->user ? $student->user->fname . ' ' . $student->user->lname : 'No refer' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                                             {{ $student->updated_at }}

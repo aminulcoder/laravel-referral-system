@@ -10,10 +10,9 @@ class StudentController extends Controller
     public function studentlist()
     {
 
+        $students = FormSubmission::with('user')->latest()->paginate(10);
 
-
-        $students = FormSubmission::latest()->paginate(10);
-
+        // return $students;
         return view('admin.student.index', compact('students'));
 
     }

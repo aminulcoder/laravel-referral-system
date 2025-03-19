@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffiliatetermsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferralController;
@@ -19,6 +20,8 @@ Route::controller(ReferralController::class)->group(function () {
     Route::get('referral-register', 'LoadReferralRegister')->name('referral.student');
     Route::post('referral-register', 'referstduntstore')->name('referral.student.store');
 });
+
+Route::get('affiliate',[AffiliatetermsController::class,'affiliate'])->name('affiliate');
 
 // Email Verification Route
 // Route::get('/verify-email/{id}/{hash}', [VerificationController::class, 'verifyEmail']);

@@ -922,11 +922,36 @@
                     <x-form.input label="First Name" name="fname" />
                     <x-form.input label="Last Name" name="lname" />
                 </div>
+                <input type="hidden" name="referral_code" value="{{ request('ref') }}">
 
                 <x-form.input label="Email" name="email" />
                 <x-form.input label="Phone" name="phone" />
                 <x-form.input label="Address" name="address" />
-                <x-form.input label="Course" name="course" />
+                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your
+                    country</label>
+                <select id="countries"
+                   name="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                    <option>Select course</option>
+                    <option>BA (Hons) Global Business Management
+                    </option>
+                    <option>BSC (Hons) Health and Social Care </option>
+                    <option> BSC (Hons) Accounting and Finance</option>
+                    <option>BSC (Hons) Computing </option>
+                    <option>LLB (Hons) with Qualifying Status
+                    </option>
+                    <option>BA (Hons) Psychology and Counselling   </option>
+                    <option>BSC Project Management </option>
+                    <option>BSC Supply Chain and Logistics Management </option>
+                    <option>BSc (Hons) Construction Project Management with Foundation Year </option>
+                    <option>BA (Hons) Business Management and Marketing with Foundation Year </option>
+                    <option>BSC (Hons) Digital Marketing  </option>
+                    <option>BSc (Hons) Computing</option>
+                    <option>BA (Hons) Business and Management with Foundation Year</option>
+                    <option>BA (Hons) Criminology
+                    </option>
+                    <option>BA (Hons) Graphic Design </option>
+                </select>
                 <x-form.submit-button />
             </div>
         </form>

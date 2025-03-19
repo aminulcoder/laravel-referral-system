@@ -110,21 +110,31 @@ class ReferralController extends Controller
     public function referstduntstore(Request $request)
     {
 
-        $request->validate([
-            'fname' => 'required',
-            'lname' => 'required',
-            'email' => 'required|email|unique:form_submissions,email',
-        ]);
+        // ফর্মের ইনপুট চেক করা
+    // dd($request->all());
 
-        $user = FormSubmission::create([
-            'user_id' => $request->user_id,
-            'fname'   => $request->fname,
-            'lname'   => $request->lname,
-            'email'   => $request->email,
-            'phone'   => $request->phone,
-            'address' => $request->address,
-            'course'  => $request->course,
-        ]);
+    $referralUser = null;
+    if ($request->filled('referral_code')) {
+        $referralCode = trim($request->referral_code); // Trim করে ক্লিন করা
+        $referralUser = User::whereRaw('LOWER(referral_code) = ?', [strtolower($referralCode)])->first();
+    }
+
+    // যদি রেফারেল ইউজার না পাওয়া যায়
+    if (!$referralUser) {
+        return redirect()->back()->with('error', 'Invalid referral code!');
+    }
+
+    // নতুন ফর্ম সাবমিশন তৈরি করা
+    $user = FormSubmission::create([
+        'user_id'       => $referralUser->id, // রেফারার থাকলে তার ID সংরক্ষণ হবে
+        'fname'         => $request->fname,
+        'lname'         => $request->lname,
+        'email'         => $request->email,
+        'phone'         => $request->phone,
+        'address'       => $request->address,
+        'course'        => $request->course,
+        'referral_code' => $request->referral_code, // রেফারেল কোড স্টোর করা
+    ]);
         return redirect()->route('referral.student')->with('success', 'User successfully registered!');
     }
 }

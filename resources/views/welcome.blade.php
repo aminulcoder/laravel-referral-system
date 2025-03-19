@@ -110,11 +110,24 @@
                 </li>
 
 
-                <li><a href="#" class="hover:text-yellow-300">About Us</a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    Affiliate Terms</a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    Contact us</a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    UK University
+                </a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    UK University</a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    Courses</a></li>
+                    UK University</a></li>
+                <li><a href="#" class="hover:text-yellow-300">
+                    Contact us</a></li>
                 <!-- Dropdown Menu -->
-                <li class="relative">
+                {{-- <li class="relative">
                     <button id="dropdownBtn" class="hover:text-yellow-300 focus:outline-none flex items-center">
-                        Dashboard
+                        About us
                         <svg id="arrowIcon" class="w-5 h-5 ml-2 transition-transform duration-300" fill="none"
                             stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -128,11 +141,11 @@
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 3</a></li>
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 4</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <!-- Dropdown Menu -->
-                <li class="relative">
+                {{-- <li class="relative">
                     <button id="dropdownBtn" class="hover:text-yellow-300 focus:outline-none flex items-center">
-                        Pages
+                        UK University
                         <svg id="arrowIcon" class="w-5 h-5 ml-2 transition-transform duration-300" fill="none"
                             stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -146,11 +159,11 @@
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 3</a></li>
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 4</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <!-- Dropdown Menu -->
-                <li class="relative">
+                {{-- <li class="relative">
                     <button id="dropdownBtn" class="hover:text-yellow-300 focus:outline-none flex items-center">
-                        Blog
+                        Courses
                         <svg id="arrowIcon" class="w-5 h-5 ml-2 transition-transform duration-300" fill="none"
                             stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -164,8 +177,8 @@
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 3</a></li>
                         <li><a href="#" class="block px-4 py-2 text-blue-500 hover:bg-gray-300">Home 4</a></li>
                     </ul>
-                </li>
-                <li><a href="#" class="hover:text-yellow-300">Contact</a></li>
+                </li> --}}
+                {{-- <li><a href="#" class="hover:text-yellow-300">Contact</a></li> --}}
             </ul>
             <a href="{{ route('referral.page') }}"
                 class="bg-gradient-to-r from-blue-500 to-purple-600 text-white  px-3 py-2 rounded-3xl">Join Now</a>
